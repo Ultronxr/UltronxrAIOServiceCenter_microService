@@ -4,26 +4,64 @@ spring:
   profiles:
     active: dev
 
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
   cloud:
     nacos:
+      username: xxx
+      password: xxx
+      server-addr: xxx
+
       discovery:
+        namespace: ff7d1332-96c7-42cc-ab02-a5dbf68d6dea
+        group: UltronxrAIOServiceCenter
+        cluster-name: DEFAULT
+        ip: 127.0.0.1
+        port: 9110
         # 是否是临时服务实例
         ephemeral: true
-        ip: 127.0.0.1
-        port: 8110
-        # 配置Nacos注册中心地址
-        server-addr:  http://localhost:8848
-        namespace: fa1f2ad5-de67-4492-b267-98ae655aaff2
-        group: LOCAL
-        cluster-name: DEFAULT
 
       config:
-        server-addr: http://localhost:8848
+        namespace: ff7d1332-96c7-42cc-ab02-a5dbf68d6dea
+        group: UltronxrAIOServiceCenter
+        cluster-name: DEFAULT
         context-path: nacos
         file-extension: yml
-        namespace: fa1f2ad5-de67-4492-b267-98ae655aaff2
-        group: LOCAL
+
+    loadbalancer:
+      nacos:
+        enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  cloud:
+    nacos:
+      username: xxx
+      password: xxx
+      server-addr: https://127.0.0.1:9000
+
+      discovery:
+        namespace: b33eef03-ff25-4177-b4c1-bd18d960548a
+        group: UltronxrAIOServiceCenter
         cluster-name: DEFAULT
+        ip: 127.0.0.1
+        port: 9110
+        ephemeral: true
+
+      config:
+        namespace: b33eef03-ff25-4177-b4c1-bd18d960548a
+        group: UltronxrAIOServiceCenter
+        cluster-name: DEFAULT
+        context-path: nacos
+        file-extension: yml
 
     loadbalancer:
       nacos:

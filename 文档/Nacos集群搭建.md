@@ -111,7 +111,13 @@ allow xxx.xxx.0.0/16;
 deny all;
 ```
 
-`systemctl restart nginx.service`
+## 启动 Nacos 和 Nginx
+
+`cd /nacos-server-2.1.2/nacos/bin`
+
+`./startup.sh`
+
+`systemctl start nginx.service`
 
 ## 登录 web 控制台
 

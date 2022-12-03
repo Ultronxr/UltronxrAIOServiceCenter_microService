@@ -2,6 +2,7 @@ package cn.ultronxr.gameregister.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +16,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DruidConfig {
 
-    private static final String WEB_USERNAME = "druid";
-    private static final String WEB_PASSWORD = "druid";
+    @Value("${spring.datasource.druid.web.username}")
+    private String webUsername;
+
+    @Value("${spring.datasource.druid.web.password}")
+    private String webPassword;
 
 
     /**
@@ -26,8 +30,8 @@ public class DruidConfig {
     public ServletRegistrationBean<StatViewServlet> statViewServlet() {
         ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
 
-        servletRegistrationBean.addInitParameter("loginUsername", WEB_USERNAME);
-        servletRegistrationBean.addInitParameter("loginPassword", WEB_PASSWORD);
+        servletRegistrationBean.addInitParameter("loginUsername", webUsername);
+        servletRegistrationBean.addInitParameter("loginPassword", webPassword);
         servletRegistrationBean.addInitParameter("resetEnable", "false");
 
         // 访问白名单和黑名单
