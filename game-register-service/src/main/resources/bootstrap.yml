@@ -4,20 +4,12 @@ spring:
   profiles:
     active: dev
 
----
-spring:
-  config:
-    activate:
-      on-profile: dev
-
   cloud:
     nacos:
       username: xxx
       password: xxx
-      server-addr: xxx
 
       discovery:
-        namespace: ff7d1332-96c7-42cc-ab02-a5dbf68d6dea
         group: UltronxrAIOServiceCenter
         cluster-name: DEFAULT
         ip: 127.0.0.1
@@ -26,7 +18,6 @@ spring:
         ephemeral: true
 
       config:
-        namespace: ff7d1332-96c7-42cc-ab02-a5dbf68d6dea
         group: UltronxrAIOServiceCenter
         cluster-name: DEFAULT
         context-path: nacos
@@ -35,6 +26,20 @@ spring:
     loadbalancer:
       nacos:
         enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  cloud:
+    nacos:
+      server-addr: https://xxx:9000
+      discovery:
+        namespace: ff7d1332-96c7-42cc-ab02-a5dbf68d6dea
+      config:
+        namespace: ff7d1332-96c7-42cc-ab02-a5dbf68d6dea
 
 ---
 spring:
@@ -44,25 +49,8 @@ spring:
 
   cloud:
     nacos:
-      username: xxx
-      password: xxx
-      server-addr: https://127.0.0.1:9000
-
+      server-addr: https://xxx:9000
       discovery:
         namespace: b33eef03-ff25-4177-b4c1-bd18d960548a
-        group: UltronxrAIOServiceCenter
-        cluster-name: DEFAULT
-        ip: 127.0.0.1
-        port: 9111
-        ephemeral: true
-
       config:
         namespace: b33eef03-ff25-4177-b4c1-bd18d960548a
-        group: UltronxrAIOServiceCenter
-        cluster-name: DEFAULT
-        context-path: nacos
-        file-extension: yml
-
-    loadbalancer:
-      nacos:
-        enabled: true
